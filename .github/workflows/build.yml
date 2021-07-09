@@ -189,7 +189,7 @@ jobs:
         shell: bash
         working-directory: out/src
         run: |
-          gn gen out --args="${{ env.GNARGS }} ${{ GNARGS_LIGHT }}"
+          gn gen out --args="${{ env.GNARGS }} ${{ env.GNARGS_LIGHT }}"
           ninja -v -C out webrtc
 
       - name: Combine - Debug
@@ -213,7 +213,7 @@ jobs:
         run: |
           echo "Clean up debug build to free up space"
           rm -rf out
-          gn gen out --args="${{ env.GNARGS }} ${{ env.GNARGS_RELEASE }} ${{ GNARGS_LIGHT }}"
+          gn gen out --args="${{ env.GNARGS }} ${{ env.GNARGS_RELEASE }} ${{ env.GNARGS_LIGHT }}"
           ninja -v -C out webrtc
 
       - name: Combine - Release
