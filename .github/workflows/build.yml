@@ -40,88 +40,89 @@ jobs:
       fail-fast: false
       matrix:
         include:
-#          # Android
-#          - target_os: android
-#            arch: arm
-#            custom_gnargs: use_custom_libcxx=false
-#            gclient_os: '["android", "unix"]'
-#            os: ubuntu-20.04
-#          - target_os: android
-#            arch: arm64
-#            custom_gnargs: use_custom_libcxx=false
-#            gclient_os: '["android", "unix"]'
-#            os: ubuntu-20.04
-#          - target_os: android
-#            arch: x86
-#            custom_gnargs: use_custom_libcxx=false
-#            gclient_os: '["android", "unix"]'
-#            os: ubuntu-20.04
-#          - target_os: android
-#            arch: x64
-#            custom_gnargs: use_custom_libcxx=false
-#            gclient_os: '["android", "unix"]'
-#            os: ubuntu-20.04
-#
-#          # iOS
-#          - target_os: ios
-#            arch: arm
-#            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
-#            gclient_os: '["ios", "mac"]'
-#            os: macos-latest
-#          - target_os: ios
-#            arch: arm64
-#            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
-#            gclient_os: '["ios", "mac"]'
-#            os: macos-latest
-#          - target_os: ios
-#            arch: x64
-#            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
-#            gclient_os: '["ios", "mac"]'
-#            os: macos-latest
-#
-#          # Linux
-#          - target_os: linux
-#            arch: x86
-#            custom_gnargs: use_custom_libcxx=false use_glib=false
-#            gclient_os: '["linux"]'
-#            os: ubuntu-20.04
+          # Android
+          - target_os: android
+            arch: arm
+            custom_gnargs: use_custom_libcxx=false
+            gclient_os: '["android", "unix"]'
+            os: ubuntu-20.04
+          - target_os: android
+            arch: arm64
+            custom_gnargs: use_custom_libcxx=false
+            gclient_os: '["android", "unix"]'
+            os: ubuntu-20.04
+          - target_os: android
+            arch: x86
+            custom_gnargs: use_custom_libcxx=false
+            gclient_os: '["android", "unix"]'
+            os: ubuntu-20.04
+          - target_os: android
+            arch: x64
+            custom_gnargs: use_custom_libcxx=false
+            gclient_os: '["android", "unix"]'
+            os: ubuntu-20.04
+
+          # iOS
+          - target_os: ios
+            arch: arm
+            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
+            gclient_os: '["ios", "mac"]'
+            os: macos-latest
+          - target_os: ios
+            arch: arm64
+            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
+            gclient_os: '["ios", "mac"]'
+            os: macos-latest
+          - target_os: ios
+            arch: x64
+            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
+            gclient_os: '["ios", "mac"]'
+            os: macos-latest
+
+          # Linux
+          - target_os: linux
+            arch: x86
+            custom_gnargs: use_custom_libcxx=false use_glib=false
+            gclient_os: '["linux"]'
+            os: ubuntu-20.04
           - target_os: linux
             arch: x64
             custom_gnargs: use_custom_libcxx=false use_glib=false
             gclient_os: '["linux"]'
             os: ubuntu-20.04
-#
-#          # macOS
-#          - target_os: mac
-#            arch: arm64
-#            custom_gnargs: use_custom_libcxx=false
-#            gclient_os: '["mac"]'
-#            os: macos-latest
-#          - target_os: mac
-#            arch: x64
-#            custom_gnargs: use_custom_libcxx=false
-#            gclient_os: '["mac"]'
-#            os: macos-latest
-#
-#          # Windows
-#          - target_os: win
-#            arch: x86
-#            # Windows 32 goes out memory when building libaom release. Disable libaom.
-#            custom_gnargs: is_clang=false enable_iterator_debugging=true enable_libaom=false
-#            gclient_os: '["win"]'
-#            msvc_arch: amd64_x86
-#            os: windows-2019
-#          - target_os: win
-#            arch: x64
-#            custom_gnargs: is_clang=false enable_iterator_debugging=true
-#            gclient_os: '["win"]'
-#            msvc_arch: amd64_x86
-#            os: windows-2019
+
+          # macOS
+          - target_os: mac
+            arch: arm64
+            custom_gnargs: use_custom_libcxx=false
+            gclient_os: '["mac"]'
+            os: macos-latest
+          - target_os: mac
+            arch: x64
+            custom_gnargs: use_custom_libcxx=false
+            gclient_os: '["mac"]'
+            os: macos-latest
+
+          # Windows
+          - target_os: win
+            arch: x86
+            # Windows 32 goes out memory when building libaom release. Disable libaom.
+            custom_gnargs: is_clang=false enable_iterator_debugging=true enable_libaom=false
+            gclient_os: '["win"]'
+            msvc_arch: amd64_x86
+            os: windows-2019
+          - target_os: win
+            arch: x64
+            custom_gnargs: is_clang=false enable_iterator_debugging=true
+            gclient_os: '["win"]'
+            msvc_arch: amd64_x86
+            os: windows-2019
 
     env:
       DEPOT_TOOLS: ${{ github.workspace }}/depot_tools
       DEPOT_TOOLS_WIN_TOOLCHAIN: 0
-      GNARGS: 'is_component_build=false rtc_include_tests=false treat_warnings_as_errors=false rtc_build_examples=false use_rtti=true target_os=\"${{ matrix.target_os }}\" target_cpu=\"${{ matrix.arch }}\" ${{ matrix.custom_gnargs }} enable_libaom=false rtc_include_ilbc=false rtc_include_opus=false rtc_exclude_audio_processing_module=true rtc_build_tools=false rtc_use_x11=false rtc_use_pipewire=false rtc_use_h264=false rtc_include_builtin_audio_codecs=false rtc_include_builtin_video_codecs=false'
+      GNARGS: 'is_component_build=false rtc_include_tests=false treat_warnings_as_errors=false rtc_build_examples=false use_rtti=true target_os=\"${{ matrix.target_os }}\" target_cpu=\"${{ matrix.arch }}\" ${{ matrix.custom_gnargs }}'
+      GNARGS_LIGHT: 'enable_libaom=false rtc_include_ilbc=false rtc_include_opus=false rtc_exclude_audio_processing_module=true rtc_build_tools=false rtc_use_x11=false rtc_use_pipewire=false rtc_use_h264=false rtc_include_builtin_audio_codecs=false rtc_include_builtin_video_codecs=false'
       GNARGS_RELEASE: "is_debug=false strip_debug_info=true symbol_level=0"
       OUTPUT_NAME: ${{ needs.config.outputs.name }}-${{ matrix.target_os }}-${{ matrix.arch }}
       TEMP_ARTIFACT: ${{ github.job }}-${{ matrix.target_os }}-${{ matrix.arch }}
@@ -184,26 +185,26 @@ jobs:
           path: out/src/${{ steps.tar-headers.outputs.tarball }}
           retention-days: 1
 
-#      - name: Build - Debug
-#        shell: bash
-#        working-directory: out/src
-#        run: |
-#          gn gen out --args="${{ env.GNARGS }}"
-#          ninja -v -C out webrtc
-#
-#      - name: Combine - Debug
-#        uses: ./.github/actions/combine_library
-#        id: combine-debug
-#        with:
-#          platform: ${{ matrix.target_os }}
-#          builddir: out/src/out
-#
-#      - name: Upload debug artifact
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: ${{ env.TEMP_ARTIFACT }}-debug
-#          path: out/src/out/${{ steps.combine-debug.outputs.library }}
-#          retention-days: 1
+      - name: Build - Debug
+        shell: bash
+        working-directory: out/src
+        run: |
+          gn gen out --args="${{ env.GNARGS }} ${{ GNARGS_LIGHT }}"
+          ninja -v -C out webrtc
+
+      - name: Combine - Debug
+        uses: ./.github/actions/combine_library
+        id: combine-debug
+        with:
+          platform: ${{ matrix.target_os }}
+          builddir: out/src/out
+
+      - name: Upload debug artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.TEMP_ARTIFACT }}-debug
+          path: out/src/out/${{ steps.combine-debug.outputs.library }}
+          retention-days: 1
 
       # Release
       - name: Build - Release
@@ -211,8 +212,8 @@ jobs:
         working-directory: out/src
         run: |
           echo "Clean up debug build to free up space"
-          #rm -rf out
-          gn gen out --args="${{ env.GNARGS }} ${{ env.GNARGS_RELEASE }}"
+          rm -rf out
+          gn gen out --args="${{ env.GNARGS }} ${{ env.GNARGS_RELEASE }} ${{ GNARGS_LIGHT }}"
           ninja -v -C out webrtc
 
       - name: Combine - Release
@@ -234,11 +235,11 @@ jobs:
         run: |
           rm -rf out
 
-#      - name: Download library artifact - Debug
-#        uses: actions/download-artifact@v2
-#        with:
-#          path: ${{ matrix.target_os }}/lib/${{ matrix.arch }}/Debug
-#          name: ${{ env.TEMP_ARTIFACT }}-debug
+      - name: Download library artifact - Debug
+        uses: actions/download-artifact@v2
+        with:
+          path: ${{ matrix.target_os }}/lib/${{ matrix.arch }}/Debug
+          name: ${{ env.TEMP_ARTIFACT }}-debug
 
       - name: Download library artifact - Release
         uses: actions/download-artifact@v2
