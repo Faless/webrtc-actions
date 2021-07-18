@@ -10,7 +10,7 @@ env:
 jobs:
   config:
     name: "Find git revision"
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-18.04"
     outputs:
       revision: ${{ steps.config.outputs.revision }}
       name: ${{ steps.config.outputs.name }}
@@ -45,22 +45,22 @@ jobs:
             arch: arm
             custom_gnargs: use_custom_libcxx=false
             gclient_os: '["android", "unix"]'
-            os: ubuntu-20.04
+            os: ubuntu-18.04
           - target_os: android
             arch: arm64
             custom_gnargs: use_custom_libcxx=false
             gclient_os: '["android", "unix"]'
-            os: ubuntu-20.04
+            os: ubuntu-18.04
           - target_os: android
             arch: x86
             custom_gnargs: use_custom_libcxx=false
             gclient_os: '["android", "unix"]'
-            os: ubuntu-20.04
+            os: ubuntu-18.04
           - target_os: android
             arch: x64
             custom_gnargs: use_custom_libcxx=false
             gclient_os: '["android", "unix"]'
-            os: ubuntu-20.04
+            os: ubuntu-18.04
 
           # iOS
           - target_os: ios
@@ -84,12 +84,12 @@ jobs:
             arch: x86
             custom_gnargs: use_custom_libcxx=false use_glib=false
             gclient_os: '["linux"]'
-            os: ubuntu-20.04
+            os: ubuntu-18.04
           - target_os: linux
             arch: x64
             custom_gnargs: use_custom_libcxx=false use_glib=false
             gclient_os: '["linux"]'
-            os: ubuntu-20.04
+            os: ubuntu-18.04
 
           # macOS
           - target_os: mac
