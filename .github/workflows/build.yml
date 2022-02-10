@@ -163,6 +163,14 @@ jobs:
         run: |
           gclient sync --no_bootstrap --shallow --no-history -vv --revision ${{ needs.config.outputs.revision }}
 
+      - name: Patch the WebRTC sources (fix bogus VS code gn config on windows)
+        if: ${{ matrix.target_os == 'win' }}
+        shell: bash
+        working-directory: out
+        run: |
+          sed -i.bak '/sys_lib_flags =$/,+1 d' src/build/toolchain/win/BUILD.gn
+          cat src/build/toolchain/win/BUILD.gn
+
 #      - name: Patch the WebRTC sources (allow dynamic crt on windows)
 #        if: ${{ matrix.target_os == 'win' }}
 #        shell: bash
