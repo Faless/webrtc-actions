@@ -107,15 +107,15 @@ jobs:
           - target_os: win
             arch: x86
             # Windows 32 goes out memory when building libaom release. Disable libaom.
-            custom_gnargs: is_clang=false enable_libaom=false
+            custom_gnargs: enable_libaom=false
             gclient_os: '["win"]'
             msvc_arch: amd64_x86
             os: windows-2019
           - target_os: win
             arch: x64
-            custom_gnargs: is_clang=false
+            custom_gnargs: ''
             gclient_os: '["win"]'
-            msvc_arch: amd64_x86
+            msvc_arch: amd64
             os: windows-2019
 
     env:
