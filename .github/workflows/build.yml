@@ -43,31 +43,31 @@ jobs:
           # Android
           - target_os: android
             arch: arm
-            custom_gnargs: use_custom_libcxx=false
+            custom_gnargs: ''
             gclient_os: '["android", "unix"]'
             os: ubuntu-20.04
           - target_os: android
             arch: arm64
-            custom_gnargs: use_custom_libcxx=false
+            custom_gnargs: ''
             gclient_os: '["android", "unix"]'
             os: ubuntu-20.04
           - target_os: android
             arch: x86
-            custom_gnargs: use_custom_libcxx=false
+            custom_gnargs: ''
             gclient_os: '["android", "unix"]'
             os: ubuntu-20.04
           - target_os: android
             arch: x64
-            custom_gnargs: use_custom_libcxx=false
+            custom_gnargs: ''
             gclient_os: '["android", "unix"]'
             os: ubuntu-20.04
 
           # iOS
-          - target_os: ios
-            arch: arm
-            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
-            gclient_os: '["ios", "mac"]'
-            os: macos-latest
+#          - target_os: ios
+#            arch: arm
+#            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
+#            gclient_os: '["ios", "mac"]'
+#            os: macos-latest
           - target_os: ios
             arch: arm64
             custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
@@ -107,13 +107,13 @@ jobs:
           - target_os: win
             arch: x86
             # Windows 32 goes out memory when building libaom release. Disable libaom.
-            custom_gnargs: is_clang=false enable_iterator_debugging=true enable_libaom=false
+            custom_gnargs: is_clang=false enable_libaom=false
             gclient_os: '["win"]'
             msvc_arch: amd64_x86
             os: windows-2019
           - target_os: win
             arch: x64
-            custom_gnargs: is_clang=false enable_iterator_debugging=true
+            custom_gnargs: is_clang=false
             gclient_os: '["win"]'
             msvc_arch: amd64_x86
             os: windows-2019
@@ -163,13 +163,13 @@ jobs:
         run: |
           gclient sync --no_bootstrap --shallow --no-history -vv --revision ${{ needs.config.outputs.revision }}
 
-      - name: Patch the WebRTC sources (allow dynamic crt on windows)
-        if: ${{ matrix.target_os == 'win' }}
-        shell: bash
-        working-directory: out
-        run: |
-          sed -i 's|:static_crt|:dynamic_crt|' src/build/config/win/BUILD.gn
-          cat src/build/config/win/BUILD.gn
+#      - name: Patch the WebRTC sources (allow dynamic crt on windows)
+#        if: ${{ matrix.target_os == 'win' }}
+#        shell: bash
+#        working-directory: out
+#        run: |
+#          sed -i 's|:static_crt|:dynamic_crt|' src/build/config/win/BUILD.gn
+#          cat src/build/config/win/BUILD.gn
 
       - name: Tar headers
         id: tar-headers
