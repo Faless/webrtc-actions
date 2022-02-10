@@ -36,30 +36,9 @@ runs:
         allowlist=$(echo ${{ inputs.allowlist }}\\.${libext} | sed "s/ /\\\\.${libext}|/g")
 
         LIBS=$(cat .ninja_log | tr '\t' '\n' | grep -E "^obj/" | grep -E $allowlist | sort -u)
-        # Combine libraries based on platform-specific tools
-        case $platform in
-        win)
-          echo $LIBS | tr ' ' '\n' >$libname.list
-          # LIB.exe from Microsoft C++ Toolset
-          lib.exe /OUT:$libname @$libname.list
-          ;;
-        mac|ios)
-          # libtool from XCode Command line tools
-          libtool -static -o $libname $LIBS
-          ;;
-        *)
-          # GNU ar + runlib
-          echo "CREATE $libname" >$libname.ar
-          for lib in $LIBS
-          do
-            echo "ADDLIB $lib" >>$libname.ar
-          done
-          echo "SAVE" >>$libname.ar
-          echo "END" >>$libname.ar
-          ar -M < $libname.ar
-          ranlib $libname
-          ;;
-        esac
+        mkdir $libname
+        for l in $LIBS; do cp "$l" $libname; done
 
         ls -l
+        ls -l $libname
         echo "::set-output name=library::${libname}"
