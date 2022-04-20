@@ -70,24 +70,24 @@ jobs:
 #            os: macos-latest
           - target_os: ios
             arch: arm64
-            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
+            custom_gnargs: ios_enable_code_signing=false
             gclient_os: '["ios", "mac"]'
             os: macos-latest
           - target_os: ios
             arch: x64
-            custom_gnargs: use_custom_libcxx=false ios_enable_code_signing=false
+            custom_gnargs: ios_enable_code_signing=false
             gclient_os: '["ios", "mac"]'
             os: macos-latest
 
           # Linux
           - target_os: linux
             arch: x86
-            custom_gnargs: use_custom_libcxx=false use_glib=false
+            custom_gnargs: ''
             gclient_os: '["linux"]'
             os: ubuntu-20.04
           - target_os: linux
             arch: x64
-            custom_gnargs: use_custom_libcxx=false use_glib=false
+            custom_gnargs: ''
             gclient_os: '["linux"]'
             os: ubuntu-20.04
 
@@ -99,7 +99,7 @@ jobs:
             os: macos-latest
           - target_os: mac
             arch: x64
-            custom_gnargs: use_custom_libcxx=false
+            custom_gnargs: ''
             gclient_os: '["mac"]'
             os: macos-latest
 
