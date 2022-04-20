@@ -37,7 +37,7 @@ runs:
 
         LIBS=$(cat .ninja_log | tr '\t' '\n' | grep -E "^obj/" | grep -E $allowlist | sort -u)
         mkdir $libname
-        for l in $LIBS; do cp "$l" $libname; done
+        for l in $LIBS; do mv "$l" $libname; done
 
         ls -l
         ls -l $libname
